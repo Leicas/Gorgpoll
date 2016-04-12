@@ -1,0 +1,16 @@
+= simple_form_for(@poll) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.input :managerid
+    = f.text_area :description
+
+    = f.label :datestart
+    = f.date_select :datestart
+    = f.label :datefinish
+    = f.date_select :datefinish
+    = f.label :datepublish
+    = f.date_select :datepublish
+  .form-actions
+    = f.button :submit, t('users.forms.buttons.save')

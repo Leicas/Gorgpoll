@@ -24,6 +24,14 @@ fr:
         fail: 'Impossible de donner à %{user} le rôle ''%{role}'''
       destroy:
         success: "Le role '%{role}' de %{user} a bien été révoqué"
+
+  poll:
+    forms:
+      buttons:
+        <<: *DEFAULT_BUTTONS
+        edit: 'Mettre à jour'
+        back: 'Retour à la liste'
+
  
   users:
     forms:
@@ -42,7 +50,6 @@ fr:
 
       attributes:
         email:
-        
         
     flash:
       create:

@@ -1,2 +1,4 @@
-%h1 Poll#new
-%p Find me in app/views/poll/new.html.haml
+%h1 Ajout de scrutin
+= render 'form'
+
+= link_to t('poll.forms.buttons.back'), poll_path
