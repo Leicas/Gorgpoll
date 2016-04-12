@@ -11,6 +11,13 @@
         %i.zmdi.zmdi-accounts
         %div.small-inbl
           Utilisateurs
+
+    - if can? :read, User
+      =link_to  poll_path, class:'box box-light shadow-1 mtm bouton bouton-light'  do
+        %i.zmdi.zmdi-assignment
+        %div.small-inbl
+          Scrutins
+
     - if can? :read, Role
       =link_to  roles_path, class:'box box-light shadow-1 mtm bouton bouton-light'  do
         %i.zmdi.zmdi-key

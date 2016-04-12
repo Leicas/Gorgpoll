@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'poll/new'
+
+  get 'poll/edit'
+
+  get 'poll/view'
+
+  get 'poll/index'
+
   get 'admin/index'
   
   devise_for :users, :controllers => {
@@ -16,7 +24,7 @@ Rails.application.routes.draw do
 
   get 'admin' => 'admin#index'
   get 'roles' => 'roles#index'
-
+  get 'poll' => 'poll#index'
   resources :users do
 
     resources :roles, only: [:create,:destroy]
