@@ -1,0 +1,9 @@
+%h1 Liste des Scrutins
+=link_to t('poll.forms.buttons.new'), new_poll_path
+
+%table
+ %tbody
+  - @polls.each do |poll|
+   %tr
+    %td= poll.title.capitalize
+    %td= poll.description
