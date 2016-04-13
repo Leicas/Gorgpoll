@@ -2,8 +2,18 @@
 =link_to t('poll.forms.buttons.new'), new_poll_path
 
 %table
+ %thead
+  %tr
+   %th='Titre'
+   %th='Description'
+   %th
  %tbody
   - @polls.each do |poll|
    %tr
     %td= poll.title.capitalize
     %td= poll.description
+    %td
+     = link_to 'Afficher', poll
+     = link_to 'Modifier', edit_poll_path(poll)
+     = link_to 'Supprimer', poll, :method => :delete, :data => { :confirm => 'Are you sure?' }
+

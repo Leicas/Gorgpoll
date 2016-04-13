@@ -1,4 +1,5 @@
 class PollsController < ApplicationController
+ before_action :set_poll, only: [:show, :edit, :update, :destroy, :sync_with_gram  ]
   def index
     authorize! :read, :admin
     @polls = Poll.all
@@ -20,13 +21,25 @@ class PollsController < ApplicationController
   end
   def edit
   end
-
+  def show
+    authorize! :read, @poll=(params[:id] ?  Poll.find(params[:id]) : current_poll)
+  end
   def view
+  end
+  def destroy
+    authorize! :destroy, @poll
+    @poll.destroy
+    respond_to do |format|
+      format.html { redirect_to polls_url, notice:  I18n.translate('users.flash.destroy.success', user: @poll.title) }
+    end
   end
    private
     # Use callbacks to share common setup or constraints between actions.
     # Never trust parameters from the scary internet, only allow the white list through.
+    def set_poll
+      @poll =(params[:id] ?  Poll.find(params[:id]) : current_poll)
+    end
     def poll_params
-      params.require(:poll).permit(:title, :managerid, :datestart, :datefinish, :id, :datepublish)
+      params.require(:poll).permit(:title, :description, :managerid, :datestart, :datefinish, :id, :datepublish)
     end
 end
