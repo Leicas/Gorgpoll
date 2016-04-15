@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'roles' => 'roles#index'
   get 'polls' => 'polls#index'
   resources :polls
+  resources :candidates
   resources :users do
 
     resources :roles, only: [:create,:destroy]

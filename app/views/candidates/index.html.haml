@@ -1,0 +1,19 @@
+%h1 Listing candidates
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @candidates.each do |candidate|
+      %tr
+        %td= link_to 'Show', candidate
+        %td= link_to 'Edit', edit_candidate_path(candidate)
+        %td= link_to 'Destroy', candidate, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Candidate', new_candidate_path
