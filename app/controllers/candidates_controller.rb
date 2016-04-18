@@ -15,6 +15,7 @@ class CandidatesController < ApplicationController
   # GET /candidates/new
   def new
     @candidate = Candidate.new
+    @users = User.all
   end
 
   # GET /candidates/1/edit
@@ -24,8 +25,9 @@ class CandidatesController < ApplicationController
   # POST /candidates
   # POST /candidates.json
   def create
-    @candidate = Candidate.new(candidate_params)
-
+    @poll = Poll.find(params[:poll_id])
+    #@candidate = Candidate.new(candidate_params)
+    @candidate = @poll.candidates.create(candidate_params)
     respond_to do |format|
       if @candidate.save
         format.html { redirect_to @candidate, notice: 'Candidate was successfully created.' }
@@ -69,6 +71,6 @@ class CandidatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def candidate_params
-      params[:candidate]
+      params.require(:candidate).permit(:description,:user_id,:poll_id)
     end
 end

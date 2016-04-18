@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   get 'admin' => 'admin#index'
   get 'roles' => 'roles#index'
   get 'polls' => 'polls#index'
-  resources :polls
-  resources :candidates
+  resources :polls do
+   resources :candidates, only: [:new, :create]
+  end
+  resources :candidates, only: [:index, :show, :edit, :update, :destroy]
   resources :users do
 
     resources :roles, only: [:create,:destroy]

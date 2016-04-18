@@ -1,7 +1,10 @@
-= simple_form_for(@candidate) do |f|
+= simple_form_for @candidate, url: poll_candidates_path do |f|
   = f.error_notification
 
   .form-inputs
-
+  = f.label "Nom du candidat"
+  = f.collection_select(:user_id, @users, :id, :fullname)
+  = f.label "Description"
+  = f.text_area :description
   .form-actions
     = f.button :submit

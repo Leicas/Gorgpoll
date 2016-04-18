@@ -23,6 +23,7 @@ class PollsController < ApplicationController
   end
   def show
     authorize! :read, @poll=(params[:id] ?  Poll.find(params[:id]) : current_poll)
+    @candidates = @poll.candidates
   end
   def view
   end
