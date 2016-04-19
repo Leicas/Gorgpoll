@@ -1,0 +1,7 @@
+= simple_form_for @vote, url: poll_votes_path do |f|
+  = f.error_notification
+
+  .form-inputs
+
+  .form-actions
+    = f.button :submit

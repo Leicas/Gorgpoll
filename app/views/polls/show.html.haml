@@ -1,6 +1,6 @@
 %h1= @poll.title
 %p= @poll.description
-%p= @poll.managerid
+%p= @poll.user.fullname
 %p= @poll.datestart
 %p= @poll.datefinish
 %p= @poll.datepublish
@@ -11,15 +11,19 @@
   %tr
    %th= 'Nom'
    %th= 'Description'
+   %th= 'Nombre de vote'
    %th
  %tbody
   - @candidates.each do |candidate|
    %tr
     %td= candidate.user.fullname
     %td= candidate.description
+    %td= candidate.votes
     %td
      = link_to 'Afficher', candidate
      = link_to 'Modifier', edit_candidate_path(candidate)
      = link_to 'Supprimer', candidate, :method => :delete, :data => { :confirm => 'Are you sure ?' }
 
 = link_to 'New Candidate', new_poll_candidate_path(:poll_id => @poll)
+
+= link_to 'New Vote token', new_poll_vote_path(:poll_id => @poll)

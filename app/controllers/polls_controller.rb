@@ -6,6 +6,7 @@ class PollsController < ApplicationController
   end
   def new
   @poll = Poll.new
+  @users = User.all
   end
  # POST /polls
   def create
@@ -41,6 +42,6 @@ class PollsController < ApplicationController
       @poll =(params[:id] ?  Poll.find(params[:id]) : current_poll)
     end
     def poll_params
-      params.require(:poll).permit(:title, :description, :managerid, :datestart, :datefinish, :id, :datepublish)
+      params.require(:poll).permit(:title, :description, :user_id, :datestart, :datefinish, :id, :datepublish)
     end
 end

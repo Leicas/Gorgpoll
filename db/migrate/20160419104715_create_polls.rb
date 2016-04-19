@@ -1,9 +1,8 @@
 class CreatePolls < ActiveRecord::Migration
   def change
-    drop_table :polls
     create_table :polls do |t|
       t.string :title
-      t.integer :managerid
+      t.integer :user_id
       t.string :description
       t.datetime :datestart
       t.datetime :datefinish

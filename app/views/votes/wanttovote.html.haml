@@ -1,0 +1,19 @@
+%h1 Vote !
+
+= simple_form_for Myvote.new, url: poll_votefor_path do |f|
+ = f.error_notification
+ = f.input :clef
+ %table
+  %thead
+   %tr
+    %th Candidat
+    %th Vote
+  %tbody
+   - @poll.candidates.each do |candidate|
+    %tr
+     %td= candidate.user.fullname
+     %td= f.radio_button :candidate_id, candidate.user_id 
+ = f.button :submit
+
+%br
+ .form-actions

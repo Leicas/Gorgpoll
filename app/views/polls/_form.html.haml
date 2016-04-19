@@ -3,7 +3,7 @@
 
   .form-inputs
     = f.input :title
-    = f.input :managerid
+    = f.collection_select(:user_id, @users, :id, :fullname)
     = f.text_area :description
 
     = f.label :datestart

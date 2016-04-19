@@ -1,0 +1,26 @@
+%h1 Listing votes
+
+%table
+  %thead
+    %tr
+      %th 'poll'
+      %th 'url'
+      %th 'clef'
+      %th 'used'
+      %th
+      %th
+      %th
+
+  %tbody
+    - @votes.each do |vote|
+      %tr
+        %td= vote.poll_id
+        %td= vote.token
+        %td= vote.clef
+        %td= vote.used
+        %td= link_to 'Show', vote
+        %td= link_to 'Edit', edit_vote_path(vote)
+        %td= link_to 'Destroy', vote, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+

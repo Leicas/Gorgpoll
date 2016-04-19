@@ -18,9 +18,13 @@ Rails.application.routes.draw do
   get 'admin' => 'admin#index'
   get 'roles' => 'roles#index'
   get 'polls' => 'polls#index'
+  get 'vote/:token', to: "votes#wanttovote", as: :wanttovote
+  post 'vote/:token', to: "votes#ivote", as: :poll_votefor
   resources :polls do
    resources :candidates, only: [:new, :create]
+   resources :votes, only: [:new, :create]
   end
+  resources :votes, only: [:index, :show, :edit, :update, :destroy]
   resources :candidates, only: [:index, :show, :edit, :update, :destroy]
   resources :users do
 
