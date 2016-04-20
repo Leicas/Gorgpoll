@@ -15,6 +15,7 @@ class VotesController < ApplicationController
   # GET /votes/new
   def new
     @vote = Vote.new
+    @poll = Poll.find(params[:poll_id])
   end
 
   # GET /votes/1/edit
@@ -29,7 +30,7 @@ class VotesController < ApplicationController
     @vote.generate_token()
     respond_to do |format|
       if @vote.save
-        format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
+        format.html { redirect_to @poll, notice: 'Vote was successfully created.' }
         format.json { render :show, status: :created, location: @vote }
       else
         format.html { render :new }
@@ -69,9 +70,16 @@ class VotesController < ApplicationController
     	@poll = vote_link.poll
         @myvote = Myvote.new()
     else
+        if !vote_link.nil?
+          @poll = vote_link.poll
        		respond_to do |format|
-		format.html { redirect_to root_path, notice: 'Ce lien a déjà été utilisé ou a expiré' }
+		format.html { redirect_to poll_view_path(@poll) }
                 end
+        else
+          respond_to do |format|
+                format.html { redirect_to root_path, notice: 'Ce lien a déjà été utilisé ou a expiré' }
+                end
+        end
     end
   end
   def ivote

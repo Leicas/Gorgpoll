@@ -25,8 +25,16 @@ class PollsController < ApplicationController
   def show
     authorize! :read, @poll=(params[:id] ?  Poll.find(params[:id]) : current_poll)
     @candidates = @poll.candidates
+    @votes = @poll.votes
   end
   def view
+  @poll=Poll.find(params[:id])
+  @total = 0
+  @poll.candidates.each do |candidate|
+   if !candidate.votes.nil?
+    @total += candidate.votes
+    end
+   end
   end
   def destroy
     authorize! :destroy, @poll

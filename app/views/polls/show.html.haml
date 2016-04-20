@@ -26,4 +26,24 @@
 
 = link_to 'New Candidate', new_poll_candidate_path(:poll_id => @poll)
 
+%h2= 'Votes'
+%table
+ %thead
+  %tr
+   %th= 'Token'
+   %th= 'Clef'
+   %th= 'Utilise'
+   %th
+ %tbody
+  - @votes.each do |vote|
+   %tr
+    %td= vote.token
+    %td= vote.clef
+    %td= vote.used
+    %td
+     = link_to 'Afficher', vote
+     = link_to 'Modifier', edit_vote_path(vote)
+     = link_to 'Supprimer', vote, :method => :delete, :data => { :confirm => 'Are you sure ?' }
+
+
 = link_to 'New Vote token', new_poll_vote_path(:poll_id => @poll)

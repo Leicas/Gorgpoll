@@ -2,7 +2,7 @@
 
 = simple_form_for Myvote.new, url: poll_votefor_path do |f|
  = f.error_notification
- = f.input :clef
+ = f.input :clef, label: 'Clef de vérification',input_html: { autocomplete: 'off' }
  %table
   %thead
    %tr

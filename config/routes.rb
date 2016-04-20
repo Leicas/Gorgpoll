@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'roles' => 'roles#index'
   get 'polls' => 'polls#index'
   get 'vote/:token', to: "votes#wanttovote", as: :wanttovote
+  get 'election/:id', to: "polls#view", as: :poll_view
   post 'vote/:token', to: "votes#ivote", as: :poll_votefor
   resources :polls do
    resources :candidates, only: [:new, :create]
