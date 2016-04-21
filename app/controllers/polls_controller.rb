@@ -21,6 +21,21 @@ class PollsController < ApplicationController
     end
   end
   def edit
+   authorize! :update, @poll
+   @users = User.all
+  end
+  def update
+    authorize! :update, @poll
+
+    respond_to do |format|
+      if @poll.update(poll_params)
+        format.html { redirect_to @poll, notice: I18n.translate('polls.flash.update.success', poll: @poll.title) }
+        format.json { render :show, status: :ok, location: @poll }
+      else
+        format.html { render :edit, notice: I18n.translate('polls.flash.update.fail', poll: @poll.title) , status: :unprocessable_entity}
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
   def show
     authorize! :read, @poll=(params[:id] ?  Poll.find(params[:id]) : current_poll)

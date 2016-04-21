@@ -1,2 +1,7 @@
-%h1 Poll#edit
-%p Find me in app/views/poll/edit.html.haml
+%h1 Modification de scrutin
+
+= render 'form'
+
+= link_to 'Show', @poll
+\|
+= link_to 'Back', polls_path

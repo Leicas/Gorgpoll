@@ -15,7 +15,7 @@ class Vote < ActiveRecord::Base
 		self.save
 	end
         def usable?
-		if !self.used?
+		if !self.used? && self.poll.datestart <= Time.now && self.poll.datefinish >= Time.now
 			return true
 		else
 			return false
