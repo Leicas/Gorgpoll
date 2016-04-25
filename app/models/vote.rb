@@ -1,11 +1,12 @@
 class Vote < ActiveRecord::Base
   belongs_to :poll
+  attr_accessor :hruid
 	def generate_token
 		self.token = loop do
 			random_token = SecureRandom.urlsafe_base64(nil, false)
 			break random_token unless Vote.exists?(token: random_token)
 		end
-                self.clef = SecureRandom.hex(4)
+                self.clef = Digest::SHA1.hexdigest (self.hruid + self.poll.to_s)
 	end
         def used?
 		self.used
