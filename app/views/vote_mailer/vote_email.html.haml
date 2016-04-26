@@ -1,0 +1,13 @@
+= stylesheet_link_tag    "mail", media: "all"
+.mam
+	.content.mw800p.center
+		.pam
+			%p=image_tag "http://www.arts-et-metiers.asso.fr/images/logo.png", height: '50'
+			%h1 Hello !
+			%p Tu viens d'être invité à un vote
+			%br
+			Suis le lien suivant pour voter 
+			= link_to 'Vote', poll_votefor_url(@token)
+			%br
+			Ta clef de vérification est
+			=@clef

@@ -6,7 +6,7 @@ class Vote < ActiveRecord::Base
 			random_token = SecureRandom.urlsafe_base64(nil, false)
 			break random_token unless Vote.exists?(token: random_token)
 		end
-                self.clef = Digest::SHA1.hexdigest (self.hruid + self.poll.to_s)
+                self.clef = Digest::SHA1.hexdigest (self.hruid + self.poll_id.to_s)
 	end
         def used?
 		self.used

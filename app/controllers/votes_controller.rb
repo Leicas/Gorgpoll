@@ -26,10 +26,15 @@ class VotesController < ApplicationController
   # POST /votes.json
   def create
     @poll = Poll.find(params[:poll_id])
-    @vote = @poll.votes.create(vote_params)
+    @vote = @poll.votes.new(vote_params)
     @vote.generate_token()
     respond_to do |format|
+     if Vote.exists?(clef: @vote.clef, poll_id: @vote.poll_id)
+      format.html { render :new , notice: 'Mail déjà enregistré'}
+      format.json { render json: @vote.errors, status: :unprocessable_entity }
+    else
       if @vote.save
+    VoteMailer.vote_email(@vote.hruid,@vote.token,@vote.clef[0..7]).deliver_now
         format.html { redirect_to @poll, notice: 'Vote was successfully created.' }
         format.json { render :show, status: :created, location: @vote }
       else
@@ -37,6 +42,7 @@ class VotesController < ApplicationController
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
     end
+   end
   end
 
   # PATCH/PUT /votes/1
@@ -87,7 +93,7 @@ class VotesController < ApplicationController
     vote_link = Vote.find_by(token: token)
     if !vote_link.nil? && vote_link.usable?
          respond_to do |format|
-            if params[:myvote][:clef] != vote_link.clef
+            if params[:myvote][:clef] != vote_link.clef[0..7]
                 format.html { redirect_to wanttovote_path(:token => token), notice: 'La clef ne correspond pas' }
             else
                 @poll = vote_link.poll
