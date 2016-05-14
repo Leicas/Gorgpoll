@@ -10,14 +10,14 @@
       -if @poll.datepublish <= Time.now
         %h2 Résultats
         .grid-3-small-1
-          - @poll.candidates.order(votes: :desc).each.with_index(1) do |candidate, index|
+          - @poll.candidates.order(comptevotes: :desc).each.with_index(1) do |candidate, index|
             .box.box-light.shadow-1.mtm
               .box-top.box-top-color.pam
                 .circle.big= "#{index}"
                 =candidate.user.fullname
               .box-bottom.pam
-                -if !candidate.votes.nil?
-                  =(candidate.votes.to_f/@total*100.0).round(2)
+                -if !candidate.comptevotes.nil?
+                  =(candidate.comptevotes.to_f/@total*100.0).round(2)
                 -else
                   =0
                 \% de votes

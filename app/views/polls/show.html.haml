@@ -18,7 +18,7 @@
    %tr
     %td= candidate.user.fullname
     %td= candidate.description
-    %td= candidate.votes
+    %td= candidate.comptevotes
     %td
      = link_to 'Afficher', candidate
      = link_to 'Modifier', edit_candidate_path(candidate)
@@ -33,6 +33,7 @@
    %th= 'Token'
    %th= 'Clef'
    %th= 'Utilise'
+   %th= 'Pour'
    %th
  %tbody
   - @votes.each do |vote|
@@ -40,6 +41,7 @@
     %td= vote.token
     %td= vote.clef
     %td= vote.used
+    %td= vote.candidate_id
     %td
      = link_to 'Afficher', vote
      = link_to 'Modifier', edit_vote_path(vote)

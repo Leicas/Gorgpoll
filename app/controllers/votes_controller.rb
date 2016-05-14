@@ -98,10 +98,15 @@ class VotesController < ApplicationController
             else
                 @poll = vote_link.poll
                 selected_candidate = Candidate.find_by(poll_id: @poll, user_id: params[:myvote][:candidate_id])
-                if !selected_candidate.votes.nil?
-                 selected_candidate.votes = selected_candidate.votes + 1
+                if !selected_candidate.comptevotes.nil?
+                 selected_candidate.comptevotes = selected_candidate.comptevotes + 1
                 else
-                 selected_candidate.votes = 1
+                 selected_candidate.comptevotes = 1
+                end
+                selected_candidate.votes << Vote.find_by(token: token)
+                directory = "chain"
+                File.open(File.join(directory, 'records.txt'), 'a') do |f|
+                  f << "\n" +  Digest::SHA1.hexdigest(File.read(File.join(directory, 'records.txt')))[0..7] + ' ; ' + vote_link.token 
                 end
                 if selected_candidate.save
                  vote_link.set_used

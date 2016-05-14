@@ -4,7 +4,7 @@ class CreateCandidates < ActiveRecord::Migration
       t.integer :user_id
       t.integer :poll_id
       t.string :description
-      t.integer :votes
+      t.integer :comptevotes
 
       t.timestamps null: false
     end

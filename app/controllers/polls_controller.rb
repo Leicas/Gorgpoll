@@ -47,7 +47,7 @@ class PollsController < ApplicationController
   @total = 0
   @poll.candidates.each do |candidate|
    if !candidate.votes.nil?
-    @total += candidate.votes
+    @total += candidate.comptevotes
     end
    end
   end
