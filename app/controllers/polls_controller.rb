@@ -46,7 +46,7 @@ class PollsController < ApplicationController
   @poll=Poll.find(params[:id])
   @total = 0
   @poll.candidates.each do |candidate|
-   if !candidate.votes.nil?
+   if !candidate.comptevotes.nil?
     @total += candidate.comptevotes
     end
    end
