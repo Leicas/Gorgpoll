@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/alexpeattie/heroku_secrets.git
+  revision: 717af8e0acf399bc88d2c8c1a7e230023942af0f
+  specs:
+    heroku_secrets (0.0.2)
+
+GIT
   remote: git://github.com/jetthoughts/yaml_db.git
   revision: fb4b6bd7e12de3cffa93e0a298a1e5253d7e92ba
   ref: fb4b6bd7e12de3cffa93e0a298a1e5253d7e92ba
@@ -328,6 +334,7 @@ DEPENDENCIES
   faker
   guard-rspec
   haml-rails
+  heroku_secrets!
   hirb
   i18n
   jbuilder (~> 2.0)
@@ -356,4 +363,4 @@ DEPENDENCIES
   yaml_db!
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
