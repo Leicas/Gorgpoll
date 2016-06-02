@@ -5,8 +5,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.3'
 
 #DATABASE
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use mysql2 as the database for Active Record
 #gem 'mysql2'
 gem 'mysql2', '~> 0.3.20'
@@ -84,6 +82,7 @@ gem 'bootstrap-tooltip-rails'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   
