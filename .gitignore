@@ -1,7 +1,11 @@
 *.rbc
 capybara-*.html
 .rspec
+<<<<<<< HEAD
 /log/*
+=======
+/log
+>>>>>>> 154faf0e7806e4ce8a5c58ceb6c2afa7843e621c
 /tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -16,11 +20,19 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 config/secrets.yml
 
+<<<<<<< HEAD
 ## Environment normalisation:
 /.bundle
 /vendor/bundle
 
 # these should all be checked in to normalise the environment:
+=======
+## Environment normalization:
+/.bundle
+/vendor/bundle
+
+# these should all be checked in to normalize the environment:
+>>>>>>> 154faf0e7806e4ce8a5c58ceb6c2afa7843e621c
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
@@ -33,6 +45,7 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+<<<<<<< HEAD
 
 .idea
 
@@ -46,3 +59,5 @@ db/schema.rb
 lib/assets/*.csv
 
 
+=======
+>>>>>>> 154faf0e7806e4ce8a5c58ceb6c2afa7843e621c
