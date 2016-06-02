@@ -1,4 +1,10 @@
 language: ruby
 rvm:
   - 2.2.2
+script:
+  - RAILS_ENV=development bundle exec rake db:migrate
+  - RAILS_ENV=development bundle exec rake db:populate
+before_script:
+  - cp config/database.yml.sqlite3.template config/database.yml
+  - cp config/secrets.yml.template config/secrets.yml
 before_install: gem install bundler -v 1.11.2
