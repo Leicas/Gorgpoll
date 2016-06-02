@@ -191,6 +191,7 @@ GEM
       hashie (>= 1.2, < 3)
       rack
     orm_adapter (0.5.0)
+    pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -345,6 +346,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.20)
   omniauth
   omniauth-cas!
+  pg
   rails (= 4.2.3)
   rails-erd
   rails4-autocomplete
